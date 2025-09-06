@@ -8,11 +8,16 @@ body{
     /* Karena ingin membuat container kalkulator dan intruction
        bersebelahan maka display dibuat flex */
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
+    max-width: 900px;
     margin: 0 auto;
     align-items: flex-start;
 }
+/* Calculator Kita */
 .ph-calculator{
+    flex: 2;
     width: 100%;
     max-width: 500px; /*Biar ukuran tidak melebar ke sebelah sekaligus memudahkan responsivitas
                         seandainya diubah ke ukuran HP (interval <600)*/
@@ -21,7 +26,6 @@ body{
     box-shadow: 0 2px 5px
 }
 
-/* Section */
 .section {
     border: 2px solid;
     border-color: hsl(0, 1%, 81%);
@@ -35,10 +39,25 @@ body{
     margin-bottom: 15px;
 }
 
-input select{
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input, select{
     width: 100%;
     padding: 8px;
     border: 2px solid;
-    border-radius: 3px;
+    border-color: hsl(0, 2%, 81%);
+    border-radius: 5px;
     box-sizing: border-box;
+    color: hsl(0, 0%, 11%);
+}
+
+/* Instruction kita */
+.instruction-panel{
+    flex: 1;
+    min-width: 280px;
+    background-color: rgb(114, 114, 255);
+
 }

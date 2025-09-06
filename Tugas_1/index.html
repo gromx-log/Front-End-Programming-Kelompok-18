@@ -18,18 +18,18 @@
                 <div class="input-forms">
                     <label for="solute-type">Tingkat Asam / Basa</label>
                     <select name="solute-type" id="solute-type">
-                        <option value="asam-kuat">Asam Kuat</option>
+                        <option value="asam-kuat" selected>Asam Kuat</option>
                         <option value="basa-kuat">Basa Kuat</option>
                         <option value="asam-lemah">Asam Lemah</option>
                         <option value="basa-lemah">Basa Lemah</option>
-                    </select><br>
+                    </select>
                 </div>
                 <!--Perhitungan dibasiskan dua cara: a). Massa dan Volume Larutan, b). Molalitas Larutan-->
                 <div class="input-forms">
-                    <label for="calculation-method">Metode Perhitungan</label>
-                    <select name="calculation-method" id="calculation-method">
-                        <option value="mass-and-volume">Massa (m) dan Volume (V)</option>
-                        <option value="molality">Molalitas / Konsetrasi (M)</option>
+                    <label for="input-type">Metode Perhitungan</label>
+                    <select name="input-type" id="input-type" >
+                        <option value="mass-and-volume" selected>Massa (m) dan Volume (V)</option>
+                        <option value="molality">Molalitas / Konsentrasi (M)</option>
                     </select>
                 </div>
 
@@ -44,14 +44,14 @@
                 </div>
                 <!--Isi nilai Ka atau Kb (Jika larutan berupa asam lemah atau basa lemah)
                     Input sengaja diubah ke teks, agar memudahkan input mengingat nilai Ka/Kb sangat kecil-->
-                <div class="input-forms" id="container-ka-kb">
+                <div class="input-forms" id="container-ka-kb" style="display: none;">
                     <label for="ka-kb-values">Nilai K<sub>a</sub> atau K<sub>b</sub></label>
                     <input type="text" name="values" id="ka-kb-values" placeholder="Contoh: 1.8e-5">
                 </div> 
 
                 <!--Berdasarkan pilihan form 2-->
                 <!--Isi nilai Molalitas (muncul berdasarkan jenis perhitungan)-->
-                <div class="input-forms" id="container-molality">
+                <div class="input-forms" id="container-molality" style="display: none;">
                     <label for="molal-values">Nilai Molalitas / Konsentrasi (M)</label>
                     <input type="number" name="values" id="molal-values" placeholder="Contoh 0.05">
                 </div>
