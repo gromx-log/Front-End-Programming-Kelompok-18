@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Kode HTML Start disini -->
+    <!-- Body HTML Start disini -->
     <div class="main-wrapper">
         <div class="ph-calculator">
             <h1>pH Calculator</h1>
 
             <div class="section">
                 <h2>1. Pilih Jenis Larutan</h2>
+                <!--Pilihan tipe asam/basa larutan, berpengaruh ke cara perhitungan dan rumus-->
                 <div class="input-forms">
                     <label for="solute-type">Tingkat Asam / Basa</label>
                     <select name="solute-type" id="solute-type">
@@ -21,8 +22,50 @@
                         <option value="basa-kuat">Basa Kuat</option>
                         <option value="asam-lemah">Asam Lemah</option>
                         <option value="basa-lemah">Basa Lemah</option>
+                    </select><br>
+                </div>
+                <!--Perhitungan dibasiskan dua cara: a). Massa dan Volume Larutan, b). Molalitas Larutan-->
+                <div class="input-forms">
+                    <label for="calculation-method">Metode Perhitungan</label>
+                    <select name="calculation-method" id="calculation-method">
+                        <option value="mass-and-volume">Massa (m) dan Volume (V)</option>
+                        <option value="molality">Molalitas / Konsetrasi (M)</option>
                     </select>
                 </div>
+
+            </div>
+            <div class="section">
+                <h2>2. Input Data</h2>
+                <!--Berdasarkan pilihan form 1-->
+                <!--Isi valensi (Jika larutan berupa asam lemah atau basa kuat)-->
+                <div class="input-forms" id="container-valency">
+                    <label for="valency-values">Nilai Valensi (&alpha;)</label>
+                    <input type="number" name="values" id="valency-value" value="1" placeholder="Jumlah H+ atau OH- Larutan">
+                </div>
+                <!--Isi nilai Ka atau Kb (Jika larutan berupa asam lemah atau basa lemah)
+                    Input sengaja diubah ke teks, agar memudahkan input mengingat nilai Ka/Kb sangat kecil-->
+                <div class="input-forms" id="container-ka-kb">
+                    <label for="ka-kb-values">Nilai K<sub>a</sub> atau K<sub>b</sub></label>
+                    <input type="text" name="values" id="ka-kb-values" placeholder="Contoh: 1.8e-5">
+                </div> 
+
+                <!--Berdasarkan pilihan form 2-->
+                <!--Isi nilai Molalitas (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-molality">
+                    <label for="molal-values">Nilai Molalitas / Konsentrasi (M)</label>
+                    <input type="number" name="values" id="molal-values" placeholder="Contoh 0.05">
+                </div>
+                <!--Isi nilai Massa (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-mass">
+                    <label for="mass-values">Nilai Massa (m) dalam satuan gram</label>
+                    <input type="number" name="values" id="mass-values" placeholder="Contoh 100">
+                </div>
+                <!--Isi nilai Volume (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-volume">
+                    <label for="volume-values">Nilai Volume (V) dalam satuan mL</label>
+                    <input type="number" name="values" id="volume-values" placeholder="Contoh 500">
+                </div>
+
             </div>
         </div>
         <div class="instruction-panel">
