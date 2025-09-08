@@ -26,7 +26,7 @@ const containerResult = document.getElementById("container-result");
  * dan memilih selection, page akan direload
  */
 
-const allInputs = [soluteType, inputType, valencyValue, molalValue, massValue, volumeValue];
+const allInputs = [soluteType, inputType, valencyValue, molalValue, massValue, volumeValue, mrValue];
 allInputs.forEach((input) => {
     input.addEventListener('change', ()=> {
         updateUI();
@@ -176,17 +176,58 @@ function displayResult(pH, pOH){
     if (pH === null || isNaN (pH) || !isFinite(pH)){
         containerResult.innerHTML = '<p>Hasil tidak dapat dihitung</p>';
         containerResult.classList.add ('result-placeholder');
+
+        //Bila user mengganti isi kalkulator dengan input invalid
+        //Hapus kelas class="result-display"
+        containerResult.classList.remove('result-display');
         return
     }
     const description = getpHDescription(pH);
-    //Hapus placeholder kita
+    //Hapus placeholder kita dan tambahkan display result menggunakan class="result-display"
     containerResult.classList.remove('result-placeholder');
+    containerResult.classList.add('result-display');
 
     containerResult.innerHTML = `
         <div class="ph-value">${pH.toFixed(2)}</div>
-        <div class="poh-value">${pOH.toFixed(2)}</div>
         <div class="ph-description">${description}</div>
+        <div class="sub-value">pH: ${pH.toFixed(2)}</div>
+        <div class="sub-value">pOH: ${pOH.toFixed(2)}</div>
     `
+
+    const descriptionElement = containerResult.querySelector('.ph-description');
+    // Ubah warna pada deskripsi pH
+    // Hapus kelas warna sebelumnya agar tidak menumpuk
+    const colorClasses = ['sangat-asam', 'asam', 'sedikit-asam', 'netral', 'sedikit-basa', 'basa', 'sangat-basa', 'tidak-terdefinisi'];
+    descriptionElement.classList.remove(...colorClasses);
+
+    // Beri warna berdasarkan deskripsi pH, caranya dengan mengambahkan
+    // dengan nama berdasarkan deskripsi
+    switch (description) {
+        case "Sangat Asam":
+            descriptionElement.classList.add("sangat-asam");
+            break; 
+        case "Asam":
+            descriptionElement.classList.add("asam");
+            break;
+        case "Sedikit Asam":
+            descriptionElement.classList.add("sedikit-asam");
+            break;
+        case "Netral":
+            descriptionElement.classList.add("netral");
+            break;
+        case "Sedikit Basa":
+            descriptionElement.classList.add("sedikit-basa");
+            break;
+        case "Basa":
+            descriptionElement.classList.add("basa");
+            break;
+        case "Sangat Basa":
+            descriptionElement.classList.add("sangat-basa");
+            break;
+        default: 
+            descriptionElement.classList.add("tidak-terdefinisi");
+            break;
+    }
 }
 
 //Fungsi utama untuk kalkulasi program ini
