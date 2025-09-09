@@ -6,7 +6,7 @@ body{
 
 .main-wrapper{
     /* Karena ingin membuat container kalkulator dan intruction
-       bersebelahan maka display dibuat flex */
+       bersebelahan maka display dibuat flex (dengan ukuran setiap panel telah ditentukan)*/
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -114,5 +114,51 @@ input, select{
 .instruction-panel{
     flex: 1;
     min-width: 280px;
-    background-color: rgb(114, 114, 255);
+    background-color: #eef2ff;
+    border: 1px solid  #c7d2fe;
+    color: #3730a3;
+    padding: 20px;
+    border-radius: 8px;
+    /* Disini, digunakan position sticky, agar pengguna tetap dapat melakukan scrollign pada kalkulator
+    Namun penjelasan instruction panel tidak akan lepas dari layar pengguna. */
+    position: sticky;
+    top: 20px;
+    /* Kita set tinggi dari panel kita, dan semisalnya ada konten yang terkena cut, akibat
+    nilai height yang sudah diatur, kita gunakan overflow-y agar memungkinkan kita untuk scroll di cut konten tersebut */
+    max-height: 87vh;
+    overflow-y: auto;
+}
+
+.formula{
+    background-color: #e0e7ff;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    text-align: center; 
+}
+
+h1 {
+    text-align: center;
+    color: hsl(211, 92%, 61%);
+    margin-top: 0;
+}
+h2 {
+    font-size: 1.2em;
+    border-bottom: 1px solid hsl(0, 0%, 75%);
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+h3 {
+    font-size: 1.1em;
+    color: hsl(244, 59%, 47%);
+    border-bottom: 1px solid hsl(229, 100%, 91%);
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+h4 {
+    font-size: 1em;
+    color: hsl(245, 56%, 54%);
+    margin-bottom: 5px;
 }
