@@ -78,35 +78,35 @@ input, select{
 }
 
 /* Warna untuk setiap deskripsi pH */
-.ph-description.sangat-asam {
+.sangat-asam {
     color: hsl(0, 96%, 56%); 
 }
 
-.ph-description.asam {
+.asam {
     color: hsl(25, 100%, 56%); 
 }
 
-.ph-description.sedikit-asam {
+.sedikit-asam {
     color: hsl(50, 100%, 63%); 
 }
 
-.ph-description.netral {
+.netral {
     color: hsl(141, 51%, 45%); 
 }
 
-.ph-description.sedikit-basa {
+.sedikit-basa {
     color: hsl(173, 61%, 43%); 
 }
 
-.ph-description.basa {
+.basa {
     color: hsl(218, 81%, 52%); 
 }
 
-.ph-description.sangat-basa {
+.sangat-basa {
     color: hsl(260, 72%, 45%); 
 }
 
-.ph-description.tidak-terdefinisi {
+.tidak-terdefinisi {
     color: hsl(0, 1%, 23%); 
 }
 
