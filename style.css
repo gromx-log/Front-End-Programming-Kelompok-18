@@ -11,7 +11,7 @@ body{
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     align-items: flex-start;
 }
@@ -19,7 +19,7 @@ body{
 .ph-calculator{
     flex: 2;
     width: 100%;
-    max-width: 500px; /*Biar ukuran tidak melebar ke sebelah sekaligus memudahkan responsivitas
+    max-width: 550px; /*Biar ukuran tidak melebar ke sebelah sekaligus memudahkan responsivitas
                         seandainya diubah ke ukuran HP (interval <600)*/
     padding: 25px;
     border-radius: 8px;
@@ -70,6 +70,7 @@ input, select{
 
 .result-display .ph-description{
     font-size: 1.7em;
+    margin-bottom: 10px;
 }
 
 .result-display .sub-value{
@@ -78,45 +79,45 @@ input, select{
 }
 
 /* Warna untuk setiap deskripsi pH */
-.ph-description.sangat-asam {
+.sangat-asam {
     color: hsl(0, 96%, 56%); 
 }
 
-.ph-description.asam {
+.asam {
     color: hsl(25, 100%, 56%); 
 }
 
-.ph-description.sedikit-asam {
+.sedikit-asam {
     color: hsl(50, 100%, 63%); 
 }
 
-.ph-description.netral {
+.netral {
     color: hsl(141, 51%, 45%); 
 }
 
-.ph-description.sedikit-basa {
+.sedikit-basa {
     color: hsl(173, 61%, 43%); 
 }
 
-.ph-description.basa {
+.basa {
     color: hsl(218, 81%, 52%); 
 }
 
-.ph-description.sangat-basa {
+.sangat-basa {
     color: hsl(260, 72%, 45%); 
 }
 
-.ph-description.tidak-terdefinisi {
+.tidak-terdefinisi {
     color: hsl(0, 1%, 23%); 
 }
 
 /* Instruction kita */
 .instruction-panel{
     flex: 1;
-    min-width: 280px;
-    background-color: #eef2ff;
-    border: 1px solid  #c7d2fe;
-    color: #3730a3;
+    min-width: 290px;
+    background-color: hsl(226, 100%, 97%);
+    border: 1px solid  hsl(228, 96%, 89%);
+    color: hsl(244, 55%, 41%);
     padding: 20px;
     border-radius: 8px;
     /* Disini, digunakan position sticky, agar pengguna tetap dapat melakukan scrollign pada kalkulator
@@ -128,9 +129,36 @@ input, select{
     max-height: 87vh;
     overflow-y: auto;
 }
+.instruction-panel table {
+    width: 100%;
+    margin-top: 15px;
+    font-size: 0.9em;
+    border-collapse: collapse;
+}
+
+.instruction-panel th, .instruction-panel td {
+    border: 1px solid hsl(227, 24%, 66%);
+    padding: 8px;
+    text-align: center;
+}
+
+.instruction-panel thead {
+    background-color: hsl(224, 100%, 89%); 
+    font-weight: bold;
+    color: hsl(242, 47%, 34%);
+}
+
+.instruction-panel ol, .instruction-panel ul {
+    padding-left: 20px; 
+    margin-bottom: 15px;
+}
+
+.instruction-panel li {
+    margin-bottom: 8px;
+}
 
 .formula{
-    background-color: #e0e7ff;
+    background-color: hsl(226, 100%, 94%);
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     padding: 10px;
