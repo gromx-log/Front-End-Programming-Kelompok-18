@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Untuk memunculkan container input yang diperlukan (untuk section kedua)
     const containerValency = document.getElementById("container-valency");
     const containerKaKb = document.getElementById("container-ka-kb");
-    const containerMolality = document.getElementById("container-molality");
+    const containerMolarity = document.getElementById("container-molarity");
     const containerMass = document.getElementById("container-mass");
     const containerVolume = document.getElementById("container-volume");
     const containerMr = document.getElementById("container-mr");
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Menyimpan nilai dari setiap form (baik section pertama dan kedua)
     const valencyValue = document.getElementById("valency-value");
     const kaKbValue = document.getElementById("ka-kb-value");
-    const molalValue = document.getElementById("molal-value");
+    const molarValue = document.getElementById("molar-value");
     const massValue = document.getElementById("mass-value");
     const volumeValue = document.getElementById("volume-value");
     const mrValue = document.getElementById("mr-value");
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * dan memilih selection, page akan melakukan kalkulasi langsung
      */
 
-    const allInputs = [soluteType, inputType, kaKbValue, valencyValue, molalValue, massValue, volumeValue, mrValue];
+    const allInputs = [soluteType, inputType, kaKbValue, valencyValue, molarValue, massValue, volumeValue, mrValue];
     allInputs.forEach((input) => {
         input.addEventListener('change', ()=> {
             updateUI();
@@ -55,18 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
             kaKbValue.value = '';
         }
 
-        //Memunculkan form Massa dan Volume atau Molalitas
+        //Memunculkan form Massa dan Volume atau Molaritas
         if (input === 'mass-and-volume'){
             containerMass.style.display = 'block';
             containerVolume.style.display = 'block';
             containerMr.style.display = 'block';
 
-            containerMolality.style.display = 'none';
+            containerMolarity.style.display = 'none';
 
-            // Hapus nilai konsentrasi/molal ketika mengganti pilihan input menjadi massa + volume
-            molalValue.value = '';
+            // Hapus nilai konsentrasi/molar ketika mengganti pilihan input menjadi massa + volume
+            molarValue.value = '';
         } else {
-            containerMolality.style.display = 'block';
+            containerMolarity.style.display = 'block';
 
             containerMass.style.display = 'none';
             containerVolume.style.display = 'none';
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: soluteType.value,
             method: inputType.value,
             valency: parseInt(valencyValue.value) || 1,
-            molal: parseFloat(molalValue.value),
+            molar: parseFloat(molarValue.value),
             mass: parseFloat(massValue.value),
             volume: parseFloat(volumeValue.value),
             mr: parseFloat(mrValue.value),
@@ -99,10 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    //Fungsi untuk menghitung konsentrasi/molal
-    function getMolality (inputs){
-        if (inputs.method === 'molality'){
-            return inputs.molal;
+    //Fungsi untuk menghitung konsentrasi/molar
+    function getMolarity (inputs){
+        if (inputs.method === 'molarity'){
+            return inputs.molar;
         }
         else {
             if (inputs.mass > 0 && inputs.mr && inputs.volume > 0){
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //Ubah volume dari mL ke L
                 const volumeLiter = inputs.volume/1000;
 
-                //Rumus molal = mol / Volume (L)
+                //Rumus molar = mol / Volume (L)
                 return molar/volumeLiter;
             }
         }
@@ -120,19 +120,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //Fungsi untuk hitung pH dan pOH
-    function calculatePh(type, molal, inputs){
+    function calculatePh(type, molar, inputs){
         let pH = null;
         let pOH = null;
 
         switch (type){
             //Larutan bersifat kuat, menggunakan valensi
             case 'asam-kuat':{
-                const hPlus = inputs.valency * molal;
+                const hPlus = inputs.valency * molar;
                 pH = -Math.log10(hPlus);
                 break;
             }
             case 'basa-kuat':{
-                const ohMin = inputs.valency * molal;
+                const ohMin = inputs.valency * molar;
                 pOH = -Math.log10(ohMin);
                 break;
             }
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (inputs.kaKb <= 0 || isNaN(inputs.kaKb)){
                     return null;
                 }
-                const hPlus = Math.sqrt(inputs.kaKb * molal);
+                const hPlus = Math.sqrt(inputs.kaKb * molar);
                 pH = -Math.log10(hPlus);
                 break;
             }
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (inputs.kaKb <= 0 || isNaN(inputs.kaKb)){
                         return null;
                     }
-                    const ohMin = Math.sqrt(inputs.kaKb * molal);
+                    const ohMin = Math.sqrt(inputs.kaKb * molar);
                     pOH = -Math.log10(ohMin);
                     break;
             }
@@ -226,11 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             //Ambil semua input data yang diberikan
             const inputs = getInputs();
-            //Lalu cari nilai Molal/konsentrasinya
-            const molal = getMolality(inputs);
+            //Lalu cari nilai Molar/konsentrasinya
+            const molar = getMolarity(inputs);
 
             //Hitung nilai pH dan pOH
-            const results = calculatePh (inputs.type, molal, inputs);
+            const results = calculatePh (inputs.type, molar, inputs);
 
             if (results && results.pH !== null && !isNaN(results.pH)){
                 displayResult(results.pH, results.pOH)
@@ -248,13 +248,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Cek apakah nilai Molal sudah benar
-                else if (isNaN(molal) || molal <= 0){
+                // Cek apakah nilai Molar sudah benar
+                else if (isNaN(molar) || molar <= 0){
                     if (inputs.method === 'mass-and-volume'){
                         message = 'Isi nilai Massa (m), Mr, dan Volume (V)';
                     }
                     else {
-                        message = 'Masukkan nilai Molalitas / Konsentrasi (M)'
+                        message = 'Masukkan nilai Molaritas / Konsentrasi (M)'
                     }
                 }        
                 // Tampilkan pesan error yang paling relevan
