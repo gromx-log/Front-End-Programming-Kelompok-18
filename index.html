@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pH Calculator</title> 
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <!-- Body HTML Start disini -->
+    <div class="main-wrapper">
+        <div class="ph-calculator">
+            <h1>pH Calculator</h1>
+
+            <div class="section">
+                <h2>1. Pilih Jenis Larutan</h2>
+                <!--Pilihan tipe asam/basa larutan, berpengaruh ke cara perhitungan dan rumus-->
+                <div class="input-forms">
+                    <label for="solute-type">Tingkat Asam / Basa</label>
+                    <select name="solute-type" id="solute-type">
+                        <option value="asam-kuat" selected>Asam Kuat</option>
+                        <option value="basa-kuat">Basa Kuat</option>
+                        <option value="asam-lemah">Asam Lemah</option>
+                        <option value="basa-lemah">Basa Lemah</option>
+                    </select>
+                </div>
+                <!--Perhitungan dibasiskan dua cara: a). Massa dan Volume Larutan, b). Molalitas Larutan-->
+                <div class="input-forms">
+                    <label for="input-type">Metode Perhitungan</label>
+                    <select name="input-type" id="input-type" >
+                        <option value="mass-and-volume" selected>Massa (m) dan Volume (V)</option>
+                        <option value="molality">Molalitas / Konsentrasi (M)</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="section">
+                <h2>2. Input Data</h2>
+                <!--Berdasarkan pilihan form 1-->
+                <!--Isi valensi (Jika larutan berupa asam lemah atau basa kuat)-->
+                <div class="input-forms" id="container-valency">
+                    <label for="valency-value">Nilai Valensi (&alpha;)</label>
+                    <input type="number" name="values" id="valency-value" value="1" placeholder="Jumlah H+ atau OH- Larutan">
+                </div>
+                <!--Isi nilai Ka atau Kb (Jika larutan berupa asam lemah atau basa lemah)
+                    Input sengaja diubah ke teks, agar memudahkan input mengingat nilai Ka/Kb sangat kecil-->
+                <div class="input-forms" id="container-ka-kb" style="display: none;">
+                    <label for="ka-kb-value">Nilai K<sub>a</sub> atau K<sub>b</sub></label>
+                    <input type="text" name="values" id="ka-kb-value" placeholder="Contoh: 1.8e-5">
+                </div> 
+
+                <!--Berdasarkan pilihan form 2-->
+                <!--Isi nilai Molalitas (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-molality" style="display: none;">
+                    <label for="molal-value">Nilai Molalitas / Konsentrasi (M)</label>
+                    <input type="number" name="values" id="molal-value" placeholder="Contoh 0.05">
+                </div>
+                <!--Isi nilai Massa (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-mass">
+                    <label for="mass-value">Nilai Massa (m) dalam satuan gram</label>
+                    <input type="number" name="values" id="mass-value" placeholder="Contoh 100">
+                </div>
+                <!--Isi nilai Massa Molekul Relatif (Mr) (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-mr">
+                    <label for="mr-value">Nilai Massa Molekul Relatif (Mr)</label>
+                    <input type="number" name="values" id="mr-value">
+                </div>
+                <!--Isi nilai Volume (muncul berdasarkan jenis perhitungan)-->
+                <div class="input-forms" id="container-volume">
+                    <label for="volume-value">Nilai Volume (V) dalam satuan mL</label>
+                    <input type="number" name="values" id="volume-value" placeholder="Contoh 500">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>3. Hasil pH & pOH</h2>
+                <div id="container-result" class="result-placeholder">
+                    <p>Ini adalah hasil dari pH dan pOH kita</p>
+                </div>
+            </div>
+        </div>
+        <!-- Instruction panel ini akan digunakan untuk memberikan briefing terkait
+            Cara penggunaan kalkulator kita, serta beberapa dasar teori dibalik
+            Kalkulator pH yang kami buat -->
+        <div class="instruction-panel">
+            <h3>Halo!</h3>
+            <p>Perkenalkan, kami Filbert Ferdinand (535240135) dan Angelo Ardiana Wijaya (535240018). Selamat datang di Kalkulator pH interaktif kami.</p>
+            <!-- Penjelasan cara menggunakan kalkulator -->
+            <h3>Cara Menggunakan Kalkulator</h3>
+            <p>Ikuti langkah-langkah mudah ini untuk menghitung pH:</p>
+            <ol>
+                <li><strong>Pilih Jenis Larutan:</strong> Tentukan apakah larutan Anda termasuk Asam Kuat, Basa Kuat, Asam Lemah, atau Basa Lemah.</li>
+                <li><strong>Pilih Metode Perhitungan:</strong>
+                    <ul>
+                        <li>Pilih <strong>Massa (m) dan Volume (V)</strong> jika Anda mengetahui berat zat terlarut (gram), Mr, dan volume larutan (mL).</li>
+                        <li>Pilih <strong>Molaritas / Konsentrasi (M)</strong> jika Anda sudah mengetahui nilai molaritas larutan.</li>
+                    </ul>
+                </li>
+                <li><strong>Masukkan Data:</strong> Isi semua kolom input yang muncul berdasarkan pilihan Anda. Kalkulator akan otomatis mengabaikan kolom yang disembunyikan.</li>
+                <li><strong>Lihat Hasil:</strong> Nilai pH, pOH, dan sifat larutan akan langsung ditampilkan di bagian hasil secara otomatis.</li>
+            </ol>
+
+            <!-- Dasar teori yang digunakan -->
+            <h3>Dasar Teori</h3>
+            <p>pH adalah ukuran konsentrasi ion hidrogen [H<sup>+</sup>] dalam suatu larutan yang menentukan tingkat keasaman atau kebasaan. Skala pH umumnya berkisar dari <strong>0 – 14</strong>.</p>
+            <!-- 1. Cara menghitung pH -->
+            <h4>Menghitung pH & pOH</h4>
+            <p>Hubungan antara pH dan pOH adalah sebagai berikut:</p>
+            <div class="formula">pH = -log[H<sup>+</sup>]</div>
+            <div class="formula">pOH = -log[OH<sup>-</sup>]</div>
+            <div class="formula">pH + pOH = 14</div>
+            <!--2. Bagaimana cara menentukan valensi
+                    Bagian ini penting untuk menghitung pH dari asam/basa kuat
+                    Dikarenakan perhitungannya akan membutuhkan valensi-->
+            <h4>Dasar Teori Penentuan Valensi (a)</h4>
+            <p>Valensi Asam atau Basa Kuat (dilambangkan dengan 'a') adalah <strong>jumlah ion [H<sup>+</sup>] (untuk asam) atau [OH<sup>-</sup>] (untuk basa)</strong> yang dilepaskan oleh satu molekul senyawa saat terionisasi.</p>
+            <p>Berikut adalah beberapa contoh umum:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Rumus Kimia</th>
+                        <th>Reaksi Ionisasi</th>
+                        <th>Valensi (a)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Asam Kuat</td>
+                        <td>HCl</td>
+                        <td>HCl → H<sup>+</sup> + Cl<sup>-</sup></td>
+                        <td><strong>1</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Asam Kuat</td>
+                        <td>H<sub>2</sub>SO<sub>4</sub></td>
+                        <td>H<sub>2</sub>SO<sub>4</sub> → 2H<sup>+</sup> + SO<sub>4</sub><sup>2-</sup></td>
+                        <td><strong>2</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Basa Kuat</td>
+                        <td>NaOH</td>
+                        <td>NaOH → Na<sup>+</sup> + OH<sup>-</sup></td>
+                        <td><strong>1</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Basa Kuat</td>
+                        <td>Ca(OH)<sub>2</sub></td>
+                        <td>Ca(OH)<sub>2</sub> → Ca<sup>2+</sup> + 2OH<sup>-</sup></td>
+                        <td><strong>2</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br> <h4 style="margin-top: 20px;">Rumus Konsentrasi Ion</h4>
+            <p>Untuk <strong>Asam Kuat</strong>:</p>
+            <div class="formula">[H<sup>+</sup>] = a &times; M</div>
+            <li><strong>a</strong> = Valensi</li>
+            <li><strong>M</strong> = Molaritas</li>
+            
+            <p>Untuk <strong>Basa Kuat</strong>:</p>
+            <div class="formula">[OH<sup>-</sup>] = a &times; M</div>
+            <li><strong>a</strong> = Valensi</li>
+            <li><strong>M</strong> = Molaritas</li>
+            
+            <p>Untuk <strong>Asam Lemah</strong> (menggunakan tetapan asam K<sub>a</sub>):</p>
+            <div class="formula">[H<sup>+</sup>] = &radic;(K<sub>a</sub> &times; M)</div>
+            <li><strong>Ka</strong> = Konstata Disosiasi Asam</li>
+            <li><strong>M</strong> = Molaritas</li>
+            
+            <p>Untuk <strong>Basa Lemah</strong> (menggunakan tetapan basa K<sub>b</sub>):</p>
+            <div class="formula">[OH<sup>-</sup>] = &radic;(K<sub>b</sub> &times; M)</div>
+            <li><strong>Kb</strong> = Konstata Disosiasi Basa</li>
+            <li><strong>M</strong> = Molaritas</li>
+            
+            <!-- Terakhir contoh dari pH dalam kehidupan sehari-hari kita -->
+            <h4 style="margin-top: 20px;">Contoh pH dalam Kehidupan Sehari-hari</h4>
+            <ul>
+                <li><strong>Air Aki (pH ~1):</strong> Sangat Asam</li>
+                <li><strong>Jus Lemon (pH ~2):</strong> Asam</li>
+                <li><strong>Air Murni (pH 7):</strong> Netral</li>
+                <li><strong>Baking Soda (pH ~9):</strong> Sedikit Basa</li>
+                <li><strong>Sabun Tangan (pH ~10):</strong> Basa</li>
+            </ul>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
