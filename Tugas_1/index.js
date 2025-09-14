@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mass: parseFloat(massValue.value),
             volume: parseFloat(volumeValue.value),
             mr: parseFloat(mrValue.value),
+            // Diberikan safety tambahan semisalnya seseorang menulis decimal point dengan , atau .
             kaKb: parseFloat(kaKbValue.value.replace(',','.'))
         };
     }
@@ -205,41 +206,19 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="sub-value">pH: ${pH.toFixed(2)}</div>
             <div class="sub-value">pOH: ${pOH.toFixed(2)}</div>
         `
-
         const descriptionElement = containerResult.querySelector('.ph-description');
+
         // Ubah warna pada deskripsi pH
-        // Hapus kelas warna sebelumnya agar tidak menumpuk
+        // Di sini, dihapus warna sebelumnya dengan colorClasses
+        // Ini berguna agar setiap kali kita, mengetik angka dan perhitungan dilakukan
+        // Warna bisa berubah tanpa saling menumpuk dengan warna pada perhitungan sebelumnya
         const colorClasses = ['sangat-asam', 'asam', 'sedikit-asam', 'netral', 'sedikit-basa', 'basa', 'sangat-basa', 'tidak-terdefinisi'];
         descriptionElement.classList.remove(...colorClasses);
 
-        // Beri warna berdasarkan deskripsi pH, caranya dengan mengambahkan
-        // dengan nama berdasarkan deskripsi
-        switch (description) {
-            case "Sangat Asam":
-                descriptionElement.classList.add("sangat-asam");
-                break; 
-            case "Asam":
-                descriptionElement.classList.add("asam");
-                break;
-            case "Sedikit Asam":
-                descriptionElement.classList.add("sedikit-asam");
-                break;
-            case "Netral":
-                descriptionElement.classList.add("netral");
-                break;
-            case "Sedikit Basa":
-                descriptionElement.classList.add("sedikit-basa");
-                break;
-            case "Basa":
-                descriptionElement.classList.add("basa");
-                break;
-            case "Sangat Basa":
-                descriptionElement.classList.add("sangat-basa");
-                break;
-            default: 
-                descriptionElement.classList.add("tidak-terdefinisi");
-                break;
-        }
+        // Beri warna berdasarkan deskripsi pH, caranya dengan menambahkan
+        // class baru sesuai dengan nama deskripsi, lalu diberikan styling di dalam style.css
+        const classDescriptionColor = description.toLowerCase().replace(' ', '-');
+        descriptionElement.classList.add(classDescriptionColor)
     }
 
     //Fungsi utama untuk kalkulasi program ini
