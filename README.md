@@ -21,7 +21,6 @@ Sebuah aplikasi web kalkulator pH yang dirancang sebagai alat hitung sekaligus m
 
 **Teknologi:**
 - HTML5
-- CSS3 (Flexbox)
-- JavaScript (ES6+)
+- CSS3
+- JavaScript
 
----
