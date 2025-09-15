@@ -18,6 +18,7 @@ Repositori ini berisi kumpulan tugas yang dikerjakan untuk mata kuliah Pemrogram
 Sebuah aplikasi web kalkulator pH yang dirancang sebagai alat hitung sekaligus media pembelajaran interaktif. Aplikasi ini dapat menghitung nilai pH dan pOH untuk larutan asam/basa kuat dan lemah, baik berdasarkan molaritas maupun massa/volume. Dilengkapi dengan panel edukasi yang menjelaskan teori dan cara penggunaan.
 
 - **[Lihat Kode](./Tugas_1/)**
+- **[Baca Laporan](./Tugas_1/LAPORAN.md)** 
 
 **Teknologi:**
 - HTML5
