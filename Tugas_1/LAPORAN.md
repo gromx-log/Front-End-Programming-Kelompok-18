@@ -44,4 +44,4 @@ Logika aplikasi dirancang secara modular agar mudah dibaca dan dikelola. Alur ke
 
 ## 3. Kesimpulan
 
-Proyek Kalkulator pH ini berhasil dikembangkan sebagai sebuah aplikasi web yang fungsional, interaktif, dan edukatif. Dengan arsitektur kode yang cili[ modular dan desain yang berpusat pada pengguna, diharapkan aplikasi ini tidak hanya berguna untuk membantu proses perhitungan tapi juga mampu meningkatkan proses pembelajaran lewat fitur perhitungan real-time yang telah kami siapkanmemberikan pengalaman belajar yang positif.
+Proyek Kalkulator pH ini berhasil dikembangkan sebagai sebuah aplikasi web yang fungsional, interaktif, dan edukatif. Dengan arsitektur kode yang cili[ modular dan desain yang berpusat pada pengguna, diharapkan aplikasi ini tidak hanya berguna untuk membantu proses perhitungan tapi juga mampu meningkatkan proses pembelajaran lewat fitur perhitungan real-time yang telah kami siapkan.
