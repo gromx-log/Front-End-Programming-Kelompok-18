@@ -9,7 +9,7 @@
 
 ## 1. Latar Belakang dan Tujuan Proyek
 
-Projek ini dibuat untuk menciptakan sebuah alat bantu belajar kimia yang tidak hanya fungsional untuk menghitung pH, tetapi juga interaktif dan edukatif. Aplikasi ini dirancang untuk memudahkan pemahaman konsep asam-basa melalui simulasi perhitungan secara real-time.
+Projek ini dibuat untuk melakukan perhitungan pH secara realtime dan juga interaktif, di mana seorarng user dapat langsung mengkalkulasikan nilai pH dengan menambahkan data input yang diminta dan hasilnya akan langsung dikeluarkan. Selain itu, kelebihan dari kalkulator ini mampu untuk langsung mengganti hasil dari nilai pH seandainya nilai data tersebut diubah secara real-time
 
 ---
 
@@ -18,37 +18,29 @@ Projek ini dibuat untuk menciptakan sebuah alat bantu belajar kimia yang tidak h
 Berikut adalah arsitektur dari aplikasi kami:
 
 ### a. Struktur HTML (`index.html`)
-Struktur utama halaman dibagi menjadi dua bagian besar menggunakan Flexbox dalam sebuah `.main-wrapper`:
-- **`.ph-calculator`**: Berisi semua elemen input (pilihan larutan, metode, dan nilai-nilai) serta kontainer untuk menampilkan hasil.
-- **`.instruction-panel`**: Panel sisi yang bersifat `sticky` untuk menampilkan informasi, teori, dan panduan penggunaan agar selalu dapat diakses oleh pengguna.
+Struktur utama halaman dibagi menjadi dua bagian besar
+- **`.ph-calculator`**: Berisi semua elemen input, yakni pilihan jenis larutan (asam/basa kuat/lemah), metode input (massa dan volume atau konsentrasi), dan form untuk menerima nilai input tersebut, serta kontainer untuk menampilkan hasil perhitungan pH, deskripsi pH, dan juga nilai pOH.
+- **`.instruction-panel`**: Panel ini berada di sebelah kanan untuk menampilkan panduan cara menggunakan kalkulator kami dan dasar teori perhitungan yang digunakan dalam perhitungan atau logika dari projek ini
 
 ### b. Styling (CSS) (`style.css`)
-Pendekatan styling kami berfokus pada desain yang bersih, modern, dan fungsional. Kami tidak menggunakan CSS Framework dan membangun semuanya dari awal. Beberapa teknik utama yang digunakan:
-- **Layout Flexbox**: Untuk menciptakan tata letak dua kolom yang responsif.
-- **CSS Variables**: Untuk manajemen skema warna yang efisien dan konsisten.
-- **Desain Responsif**: Menggunakan `flex-wrap` dan `min-width` untuk memastikan aplikasi tetap nyaman digunakan pada layar yang lebih kecil.
+Dalam melakukan styling, kami menggunakan beberapa hal yang menjadi fondasi utama untuk website kami:
+- **Flexbox**: Untuk menciptakan tata letak dua kolom yang responsif (pada layar komputer, kalkulator berada di sisi kiri dan instruction panel berada di kanan)
+- **Color**: Kami menggunakan warna yang cukup terang untuk elemen-elemen utama kami, ditujukan agar user lebih tertarik saat menggunakan kalkulatornya
+- **Desain Responsif**: Menggunakan `flex-wrap` dan `min-width` agar website tetap ramah untuk berbagai jenis perangkat, baik handphone, tablet, maupun laptop sekalipun
 
-### c. Logika JavaScript (`index.js`)
+### c. JavaScript (`index.js`)
 Logika aplikasi dirancang secara modular agar mudah dibaca dan dikelola. Alur kerja utamanya adalah sebagai berikut:
 1.  **Event Listener**: Semua elemen input diberi `event listener` (`change` dan `input`) untuk memicu kalkulasi secara real-time.
-2.  **`updateUI()`**: Fungsi ini bertanggung jawab untuk menampilkan/menyembunyikan form input yang relevan berdasarkan pilihan pengguna (misalnya, menampilkan input Ka/Kb hanya untuk asam/basa lemah).
+2.  **`updateUI()`**: Fungsi ini bertanggung jawab untuk menampilkan/menyembunyikan form input yang berdasarkan pilihan pengguna (misalnya, menampilkan input Ka/Kb hanya untuk asam/basa lemah atau valensi hanya untuk asam/basa kuat).
 3.  **`calculateAllAndDisplay()`**: Ini adalah fungsi utama yang mengorkestrasi seluruh proses:
-    - Memanggil `getInputs()` untuk mengumpulkan semua nilai dari form.
-    - Memanggil `getMolarity()` untuk menghitung konsentrasi.
-    - Memanggil `calculatePh()` untuk melakukan perhitungan inti berdasarkan jenis larutan.
-    - Terakhir, memanggil `displayResult()` untuk menampilkan hasil ke layar, lengkap dengan deskripsi dan warna yang sesuai.
-4.  **Validasi Input**: Logika `if-else` di dalam `calculateAllAndDisplay` secara cerdas memeriksa input yang kurang dan memberikan pesan panduan yang spesifik kepada pengguna.
-
----
-
-## 3. Tantangan dan Solusi
-
-Salah satu tantangan utama dalam proyek ini adalah menciptakan pengalaman pengguna yang mulus dan interaktif. Kami harus memastikan bahwa setiap perubahan kecil pada input langsung memicu perhitungan ulang tanpa perlu menekan tombol "hitung". 
-
-**Solusi:** Kami mengimplementasikan `event listener` pada event `input` dan `change`. Tantangan lanjutannya adalah memberikan pesan error yang relevan saat input tidak lengkap. Ini kami selesaikan dengan membangun logika `if-else if` yang terstruktur di dalam fungsi kalkulasi utama untuk memeriksa kondisi prioritas (misalnya, cek Ka/Kb dulu, baru cek molaritas).
+    - `getInputs()` untuk mengumpulkan semua nilai dari form.
+    - `getMolarity()` untuk menghitung konsentrasi.
+    - `calculatePh()` untuk melakukan pH dari larutan, berdasarkan nilai `getInputs()` dan `getMolarity()`.
+    - `displayResult()` untuk menampilkan hasil ke layar, lengkap dengan deskripsi dan warna dari deskripsinya.
+4.  **Validasi Input**: Kami menambahkan logika `if-else` di dalam `calculateAllAndDisplay` untuk memeriksa apakah terdapat input yang kurang, sekaligus memberikan instruksi untuk mengisi nilai yang kurang tersebut pada bagian hasil.
 
 ---
 
 ## 4. Kesimpulan
 
-Proyek Kalkulator pH ini berhasil dikembangkan sebagai sebuah aplikasi web yang fungsional, interaktif, dan edukatif. Dengan arsitektur kode yang modular dan desain yang berpusat pada pengguna, aplikasi ini tidak hanya memenuhi semua persyaratan fungsional tetapi juga memberikan pengalaman belajar yang positif.
+Proyek Kalkulator pH ini berhasil dikembangkan sebagai sebuah aplikasi web yang fungsional, interaktif, dan edukatif. Dengan arsitektur kode yang cili[ modular dan desain yang berpusat pada pengguna, diharapkan aplikasi ini tidak hanya berguna untuk membantu proses perhitungan tapi juga mampu meningkatkan proses pembelajaran lewat fitur perhitungan real-time yang telah kami siapkanmemberikan pengalaman belajar yang positif.
